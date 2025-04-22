@@ -22,8 +22,7 @@ public class Loader implements Runnable {
     public void run() {
         while (done < nBox) {
             int value = Math.min(nBox - done, capacity);
-            synchronized (warehouse1) {
-                synchronized (warehouse2) {
+
                     if (value == 2) {
                         warehouse1.addValue(1);
                         warehouse2.addValue(1);
@@ -32,9 +31,9 @@ public class Loader implements Runnable {
                         warehouse1.addValue(1);
                         done += 1;
                         System.out.println(" Этот блок на всякий случай!");
-                    }
+
                 }
-            }
+
             try {
                 Thread.sleep(5);
             } catch (InterruptedException e) {

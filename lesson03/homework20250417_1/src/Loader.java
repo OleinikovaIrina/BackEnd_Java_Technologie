@@ -27,12 +27,12 @@ public class Loader implements Runnable {
 
 
                 synchronized (lock) {
-                    if (done == nBox) {
+
                     if (winner == null) {
                         winner = name;
                         System.out.println(name + " receives a bonus");
 
-                    }
+
                 }
             }
             System.out.println(name + " finish. Get: " + done + " boxes");
