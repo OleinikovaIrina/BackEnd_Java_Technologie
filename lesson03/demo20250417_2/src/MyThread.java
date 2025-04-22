@@ -7,7 +7,7 @@ public class MyThread extends  Thread{
             try {
                 Thread.sleep(1000); // Поток засыпает
             } catch (InterruptedException e) {
-                System.out.println("Поток прерван во время       сна!");
+                System.out.println("Поток прерван во время   сна!");
                 break; // Выход из цикла
             }
         }
