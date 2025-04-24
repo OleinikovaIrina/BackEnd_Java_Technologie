@@ -1,3 +1,5 @@
+package deadlock_free;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -20,23 +22,23 @@ class Document {
         relatedDocs.add(doc);
     }
 
-    public void edit(Document related) {
-        List<Document> sortedDocument = new ArrayList<>(relatedDocs);
+    public void edit() {
+        // создаем сортированный список всех документов
+        List<Document> toLock = new ArrayList<>(relatedDocs);
+        toLock.add(this);
+        toLock.sort(Comparator.comparingInt(Document::getId));
 
-        Document first = this.getId() < related.getId() ? this : related;
-        Document second = this.getId() < related.getId() ? related : this;
 
-        synchronized (first) {
-            System.out.println(Thread.currentThread().getName() + " редактирует " + name);
-            for (Document doc : relatedDocs) {
-
-                synchronized (second) {
-                    System.out.println(Thread.currentThread().getName() + " редактирует связанный документ " + doc.name);
-                    // имитация редактирования
-                }
+        System.out.println(Thread.currentThread().getName() + " редактирует " + name);
+        for (Document doc : toLock) {
+            synchronized (doc) {
+                System.out.println(Thread.currentThread().getName() + " редактирует связанный документ " + doc.name);
+                // имитация редактирования
             }
         }
     }
+
+
 
     public String getName() {
         return name;
