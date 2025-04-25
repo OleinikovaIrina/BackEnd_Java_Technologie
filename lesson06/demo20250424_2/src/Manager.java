@@ -1,20 +1,22 @@
 public class Manager implements Runnable{
     private  TaskBoard taskBoard;
-    private static final int N_TASKS=10;
+    private int nTask;
 
-    public Manager(TaskBoard taskBoard) {
+
+    public Manager(TaskBoard taskBoard, int nTask) {
         this.taskBoard = taskBoard;
+        this.nTask = nTask;
     }
 
     @Override
     public void run() {
-        for (int i = 0; i < N_TASKS ; i++) {
+        for (int i = 0; i < nTask; i++) {
             taskBoard.setTask("task "+i);
-            try {
+            /*try {
                 Thread.sleep(200);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
         }
     }
 }

@@ -3,6 +3,13 @@ public class TaskBoardImpl1 implements TaskBoard{
 
     @Override
     public synchronized void setTask(String task) {
+        while (this.task!=null){
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
         this.task = task;
         this.notify();
     }
@@ -18,6 +25,7 @@ public class TaskBoardImpl1 implements TaskBoard{
         }
         String res = task;
         task = null;
+        this.notifyAll();
         return res;
     }
 }
