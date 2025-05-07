@@ -31,7 +31,7 @@ public class Main {
         RequestEntity<String> request = new RequestEntity<>(headers, HttpMethod.GET, uri);
 
         ResponseEntity<DataResponseDto> response = restTemplate.exchange(request, DataResponseDto.class);
-
+// добавь проверку из классной работы getStatusCode.OK  и єксепшен
         response.getBody().getResult().getText().forEach(dataDto -> {
             System.out.println(dataDto.getData());
         });
