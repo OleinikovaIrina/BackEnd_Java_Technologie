@@ -16,8 +16,11 @@ public class DemoRestController {
 
     public List<Books> getBooks() {
         List<Books> books = new ArrayList<>();
-        books.add(new Books("hhj", "ghhjj"));
-        books.add(new Books("hhj1", "ghhjj1"));
+        books.add(new Books("1984", "George Orwell"));
+        books.add(new Books("To Kill a Mockingbird", "Harper Lee"));
+        books.add(new Books("The Great Gatsby", "F. Scott Fitzgerald"));
+        books.add(new Books("Pride and Prejudice", "Jane Austen"));
+        books.add(new Books("Moby-Dick", "Herman Melville"));
         return books;
     }
 
