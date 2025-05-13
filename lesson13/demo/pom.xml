@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.ait</groupId>
-	<artifactId>demo20250517_1</artifactId>
+	<artifactId>demo20250512_1</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>demo</name>
 	<description>demo</description>
