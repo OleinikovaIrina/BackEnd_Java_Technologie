@@ -5,10 +5,10 @@ import lombok.*;
 
 @AllArgsConstructor
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
-
-
+@EqualsAndHashCode(of="id")
 
 public class TaskResponseDto {
 

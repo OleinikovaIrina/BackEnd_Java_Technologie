@@ -5,6 +5,9 @@ import de.ait.homework20250514_1.dto.ProgrammerResponseDto;
 import de.ait.homework20250514_1.repository.ProgrammerRepository;
 import de.ait.homework20250514_1.service.ProgrammerService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,13 +24,20 @@ public class ProgrammerController {
 
 
     @GetMapping("/programmers")
-    public List<ProgrammerResponseDto> getProgrammers() {
-        return service.getAllProgrammers();
+    public ResponseEntity<List<ProgrammerResponseDto> >getProgrammers() {
+        List<ProgrammerResponseDto> allProgrammers = service.getAllProgrammers();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-ProgrammerOfSize", String.valueOf(allProgrammers.size()));
+        return new ResponseEntity<>(allProgrammers, headers, HttpStatus.OK);
     }
 
     @GetMapping("/programmers/{id}")
-    public ProgrammerResponseDto getProgrammerById(@PathVariable("id") Long id) {
-        return service.getProgrammerById(id);
+    public ResponseEntity<ProgrammerResponseDto> getProgrammerById(@PathVariable("id") Long id) {
+       try {
+           return  ResponseEntity.ok(service.getProgrammerById(id));
+       }catch (Exception e){
+           return ResponseEntity.notFound().build();
+       }
     }
 
 //
