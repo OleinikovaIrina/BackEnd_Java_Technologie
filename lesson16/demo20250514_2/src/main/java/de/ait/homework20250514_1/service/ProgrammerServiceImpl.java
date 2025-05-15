@@ -1,6 +1,7 @@
 package de.ait.homework20250514_1.service;
 
 import de.ait.homework20250514_1.dto.ProgrammerResponseDto;
+import de.ait.homework20250514_1.mappers.ProgrammerMapper;
 import de.ait.homework20250514_1.model.Programmer;
 import de.ait.homework20250514_1.repository.ProgrammerRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +13,11 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProgrammerServiceImpl implements ProgrammerService{
     private final ProgrammerRepository repository;
+private final ProgrammerMapper mapper;
 
     @Override
     public List<ProgrammerResponseDto> getAllProgrammers() {
-        return repository.findAll()
-                .stream()
-                .map(p -> new ProgrammerResponseDto(p.getId(), p.getName()))
-                .toList();
+        return mapper.toResponsePrDtoList(repository.findAll());
     }
 
     @Override

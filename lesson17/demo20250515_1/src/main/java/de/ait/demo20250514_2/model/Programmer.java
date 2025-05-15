@@ -1,19 +1,14 @@
-package de.ait.homework20250514_1.model;
+package de.ait.demo20250514_2.model;
 
 import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@NoArgsConstructor
-@ToString
-@EqualsAndHashCode(of="id")
-
 public class Programmer {
-
     private Long id;
     private String name;
     private Set<Task> tasks;
