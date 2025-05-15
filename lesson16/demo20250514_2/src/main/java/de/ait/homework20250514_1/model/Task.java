@@ -5,12 +5,13 @@ import lombok.*;
 
 @AllArgsConstructor
 @Getter
+@Setter
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(of="id")
 
 public class Task {
-    @Setter
+
     private Long id;
     private String description;
     private Priority priority;

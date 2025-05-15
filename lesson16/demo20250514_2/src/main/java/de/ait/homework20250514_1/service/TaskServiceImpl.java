@@ -2,6 +2,7 @@ package de.ait.homework20250514_1.service;
 
 import de.ait.homework20250514_1.dto.TaskRequestDto;
 import de.ait.homework20250514_1.dto.TaskResponseDto;
+import de.ait.homework20250514_1.mappers.TaskMapper;
 import de.ait.homework20250514_1.model.Task;
 import de.ait.homework20250514_1.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,13 +15,19 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository repository;
+    private  final TaskMapper mapper;
+
+//    @Override
+//    public List<TaskResponseDto> getAllTasks() {
+//        return repository.findAll()
+//                .stream()
+//                .map(this::mapToResponseDto)
+//                .toList();
+//    }
 
     @Override
     public List<TaskResponseDto> getAllTasks() {
-        return repository.findAll()
-                .stream()
-                .map(this::mapToResponseDto)
-                .toList();
+        return mapper.toResponseDtoList(repository.findAll());
     }
 
     @Override
